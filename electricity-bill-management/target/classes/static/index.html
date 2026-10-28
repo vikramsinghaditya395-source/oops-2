@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VoltPay | Electricity Bill Management</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand">⚡ Volt<span>Pay</span></div><span>Electricity Bill Management</span></header>
+<main class="container">
+  <section class="panel">
+    <h1>VoltPay Dashboard</h1>
+    <p class="muted">This starter UI is connected to the Java REST API. Create a customer, then create and review bills.</p>
+    <h2>Register customer</h2>
+    <form id="customerForm" class="grid">
+      <label>Customer ID<input name="customerCode" placeholder="CUST1001" required></label>
+      <label>Full name<input name="name" required></label>
+      <label>Mobile<input name="mobile" pattern="[0-9]{10}" required></label>
+      <label>Connection type<select name="connectionType"><option>Residential</option><option>Commercial</option></select></label>
+      <label>Meter number<input name="meterNumber"></label>
+      <label>Address<input name="address"></label>
+      <button class="primary">Save customer</button>
+    </form>
+    <p id="customerMessage" class="message"></p>
+  </section>
+  <section class="panel">
+    <h2>Create / update bill</h2>
+    <form id="billForm" class="grid">
+      <label>Customer ID<input name="customerCode" placeholder="CUST1001" required></label>
+      <label>Billing period<input name="period" type="month" required></label>
+      <label>Previous reading (kWh)<input name="previousReading" type="number" min="0" required></label>
+      <label>Current reading (kWh)<input name="currentReading" type="number" min="0" required></label>
+      <label>Tariff category<select name="category"><option>Residential</option><option>Commercial</option></select></label>
+      <label>Due date<input name="dueDate" type="date" required></label>
+      <button class="primary">Calculate and save bill</button>
+    </form>
+    <p id="billMessage" class="message"></p>
+  </section>
+  <section class="panel">
+    <div class="row"><h2>Customers</h2><button id="refreshCustomers" class="secondary" type="button">Refresh</button></div>
+    <div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Mobile</th><th>Category</th><th>Meter</th></tr></thead><tbody id="customers"></tbody></table></div>
+  </section>
+  <section class="panel">
+    <div class="row"><h2>Bills</h2><button id="refreshBills" class="secondary" type="button">Refresh</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Customer</th><th>Period</th><th>Units</th><th>Amount</th><th>Due</th><th>Status</th><th>Action</th></tr></thead><tbody id="bills"></tbody></table></div>
+  </section>
+</main>
+<script src="/js/app.js"></script>
+</body></html>
